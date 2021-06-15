@@ -31,18 +31,18 @@
 
 // getName()("Alex");
 
-function getResult() {
-  return function (a) {
-    return function (b) {
-      return function (c) {
-        console.log(c + b + a);
-      };
-    };
-  };
-}
+// function getResult() {
+//   return function (a) {
+//     return function (b) {
+//       return function (c) {
+//         console.log(c + b + a);
+//       };
+//     };
+//   };
+// }
 
-const data = getResult()(1)(2);
-data(8)
+// const data = getResult()(1)(2);
+// data(8)
 // ===========================
 // import { getMessage } from "./useCase.js";
 
