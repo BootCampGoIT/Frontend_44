@@ -1,413 +1,217 @@
-// ========= IIFE ===========
+// [].method(callback[(currentValue, index, array)]);
 
-// (function () {
-//   console.log("Hello");
-// })();
+// const callBack = (item) => ({ value: item });
 
-// ========= Recursion =============
-//  ============ HOMEWORK ===========
-// const recurs = (i) => {
-//   const max = 100;
-//   i += 1;
-//   console.log(i);
-//   if (i < max) {
-//     recurs(i);
-//   } else return 1000000;
-// };
+// [1, 2, 3, 4, 5].map(callBack);
 
-// const result = recurs(0);
-// console.log(result);
+// ==============================
+//! ex1.
+// const arr = [
+//   { name: "Alex", data: { start: "12.12.2020", finish: "22.06.2021" } },
+//   { name: "Nikita", data: { start: "12.1.2020", finish: "22.3.2021" } },
+//   { name: "Jake", data: { start: "12.2.2020", finish: "22.4.2021" } },
+//   { name: "Bob", data: { start: "12.3.2020", finish: "22.5.2021" } },
+// ];
 
-// =======================================
+// const newArr = [];
+// for (let i = 0; i < arr.length; i += 1) {
+//   const keys = Object.keys(arr[i]);
 
-// const product = {
-//   id: "gdjqghdbmhas53671",
-//   name: "Milk",
-//   price: 100,
-// };
+//   const deepCloneFunction = (value = keys) => {
+//     for (let i = 0; i < keys.length; i += 1) {
+//       if (keys[i].constructor.name === "Object") {
+//         deepCloneFunction(Object.keys(keys[i]));
+//       } else newArr[i] = { [keys[i]]: arr[keys[i]] };
+//     }
+//   };
+//   deepCloneFunction();
+// }
+// console.log("newArr :>> ", newArr);
 
-// const qqqqq = {
-//   items: [
+// =============== forEach ==============
+
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+// numbers.forEach((item, index) => (numbers[index] = item + 1));
+// console.log("numbers :>> ", numbers);
+
+// =============== forEach ============
+// const arr = [
+//   { name: "Alex", data: { start: "12.12.2020", finish: "22.06.2021" } },
+//   { name: "Nikita", data: { start: "12.1.2020", finish: "22.3.2021" } },
+//   { name: "Jake", data: { start: "12.2.2020", finish: "22.4.2021" } },
+//   { name: "Bob", data: { start: "12.3.2020", finish: "22.5.2021" } },
+// ];
+// arr.forEach((item) => (item.data.start = "0000000000000"));
+
+// console.log('arr :>> ', arr);
+
+// ====================== map =====================
+
+// const users = [
+//   { name: "Alex", data: { start: "12.12.2020", finish: "22.06.2021" } },
+//   { name: "Nikita", data: { start: "12.1.2020", finish: "22.3.2021" } },
+//   { name: "Jake", data: { start: "12.2.2020", finish: "22.4.2021" } },
+//   { name: "Bob", data: { start: "12.3.2020", finish: "22.5.2021" } },
+// ];
+
+// const res = users.map(({ data: { finish } }) => finish);
+
+// console.log("res :>> ", res);
+
+// =====
+
+// const newUsers = users.map((user) => ({
+//   ...user,
+//   status: { prev: "offline", current: "online" },
+// }));
+
+// <li>Alex</li>
+// <li>Nikita</li>
+// <li>NikJakeita</li>
+// <li>Jake</li>
+
+// const markup = users.map((user) => `<li>${user.name}</li>`).join("");
+// console.log("markup :>> ", markup);
+
+// =============== filter ==================
+// const state = {
+//   cart: [],
+//   products: [],
+//   users: [
 //     {
-//       id: "gdjqghdbmhas53671",
-//       name: "Milk",
-//       price: 100,
+//       id: "1",
+//       name: "Alex",
+//       data: { start: "12.12.2020", finish: "22.06.2021" },
+//       status: "onLine",
 //     },
 //     {
-//       id: "gdjqghdbmteterthas53671",
-//       name: "Bread",
-//       price: 105,
+//       id: "2",
+//       name: "Nikita",
+//       data: { start: "12.1.2020", finish: "22.3.2021" },
+//       status: "offLine",
 //     },
 //     {
-//       id: "asdasdaadsaadasas",
-//       name: "Juice",
-//       price: 110,
+//       id: "3",
+//       name: "Jake",
+//       data: { start: "12.2.2020", finish: "22.4.2021" },
+//       status: "onLine",
+//     },
+//     {
+//       id: "4",
+//       name: "Bob",
+//       data: { start: "12.3.2020", finish: "22.5.2021" },
+//       status: "offLine",
 //     },
 //   ],
-//   quantity() {
-//     return this.items.length;
-//   },
-//   addItem(item) {
-//     this.items.push(item);
-//   },
-//   deleteItem(id) {
-//     //! this.items = this.items.filter((item) => item.id !== id);
-//     let index = 0;
-//     for (const item of this.items) {
-//       index = this.items.indexOf(item);
-//       if (item.id === id) break;
-//     }
-//     console.log(index);
-//     this.items.splice(index, 1);
-//   },
-//   updateItem(itemObject) {
-//     for (const item of this.items) {
-//       if (item.id === itemObject.id) {
-//         item.price = itemObject.price;
-//       }
-//     }
-//   },
 // };
 
-// console.log(qqqqq.quantity());
+// const removeUser = (delID) => {
+//   state.users = state.users.filter(({ id }) => id !== delID);
+// };
+// removeUser("3")
+// console.log('state :>> ', state);
 
-// ============================
-// const Hotel = function (name, stars, capacity) {
-//   this.name = name;
-//   this.stars = stars;
-//   this.capacity = capacity;
+// // const res = users.filter(({ status }) => status === "onLine");
+// // console.log("res :>> ", res);
+
+// =========================
+// const state = {
+//   cart: [],
+//   products: [],
+//   users: [
+//     {
+//       id: "1",
+//       name: "Alex",
+//       data: { start: "12.12.2020", finish: "22.06.2021" },
+//       status: "onLine",
+//       likes: 1000,
+//     },
+//     {
+//       id: "2",
+//       name: "Nikita",
+//       data: { start: "12.1.2020", finish: "22.3.2021" },
+//       status: "offLine",
+//       likes: 100,
+//     },
+//     {
+//       id: "3",
+//       name: "Jake",
+//       data: { start: "12.2.2020", finish: "22.4.2021" },
+//       status: "onLine",
+//       likes: 10,
+//     },
+//     {
+//       id: "4",
+//       name: "Bob",
+//       data: { start: "12.3.2020", finish: "22.5.2021" },
+//       status: "offLine",
+//       likes: 1,
+//     },
+//     {
+//       id: "5",
+//       name: "Jake",
+//       data: { start: "12.3.2020", finish: "22.4.2021" },
+//       status: "onLine",
+//     },
+//   ],
+// };
+// const res = state.users
+//   .map(({ data: { start } }) => start)
+//   .filter((start) => start === "12.3.2020");
+// console.log("res :>> ", res);
+
+// const res1 = state.users.reduce((acc, { status, name }) => {
+//   if (status === "onLine") {
+//     acc.push({ name, status });
+//   }
+//   return acc;
+// }, []);
+// console.log("res :>> ", res);
+
+// const res = state.users.reduce((acc, user) => {
+//   return acc += user.likes || 0;
+
+// }, 0);
+
+// console.log("res :>> ", res);
+
+// const res = state.users.find(({ name, id }) => name === "Jake" && id === "5");
+// console.log("res :>> ", res);
+
+// const res = state.users.some(({ name }) => name === "Jake");
+// console.log('res :>> ', res);
+
+// const res1 = state.users.every(({ name }) => name == "Jake");
+// console.log('res :>> ', res1);
+// =================
+// const res = [];
+// const getCommonElements = (arr1, arr2) => {
+//   arr1.forEach((element) => arr2.includes(element) && res.push(element));
 // };
 
-// const hotel = new Hotel("Resort Hotel", 5, 100);
-// console.log(hotel);
+// getCommonElements();
+// console.log("res :>> ", res);
+// ===========
 
-// const counter = (init) => (step) => (init += step);
+const arr1 = [1, 2, 3, 4, 5];
+const arr2 = [2, 4, 8, 3];
+const res = [...arr1, ...arr2];
+
+const set = [...new Set(res)];
+console.log("set :>> ", set);
+
+// console.log("res :>> ", res);
+
 
 // ===================
+const users = [
+  { name: 'Mango', daysActive: 15 },
+  { name: 'Poly', daysActive: 4 },
+  { name: 'Ajax', daysActive: 27 },
+  { name: 'Chelsey', daysActive: 2 },
+];
 
-// const Counter = function (initValue, step) {
-//   this.initValue = initValue;
-//   this.step = step;
-//   this.add = function () {
-//     return (this.initValue += this.step);
-//   };
-// };
+// const sortByActiveDays = (a, b) => a.daysActive - b.daysActive;
 
-// const counter = new Counter(50, 2);
-// console.log(counter.add());
-// console.log(counter.add());
-// console.log(counter.add());
-// console.log(counter.add());
-// console.log(counter.add());
-// console.log(counter.add());
-// const zoom = new Counter(100, 20);
+console.log(users.sort((a, b) => a.daysActive - b.daysActive));
 
-// zoom.decr = function () {
-//   return (this.initValue -= this.step);
-// };
-// console.log(zoom.add());
-// console.log(zoom.decr());
-
-// ========================================
-
-// const Hero = function (name, health, hitPower, weapon, speed) {
-//   this.name = name;
-//   this.health = health;
-//   this.hitPower = hitPower;
-//   this.weapon = weapon;
-//   this.speed = speed;
-
-//   this.hit = function (enemyHealth) {
-//     return enemyHealth - this.hitPower * this.speed;
-//   };
-//   this.modernization = function (value) {
-//     this.hitPower += value;
-//   };
-// };
-
-// const batman = new Hero("Alex", 100, 20, "gun", 0.2);
-// const robin = new Hero("Robin", 80, 10, "gun", 2);
-
-// const hit1 = (robin, batman) => {
-//   robin.health = batman.hit(robin.health);
-//   document.querySelector(".hero2Title").textContent = robin.health;
-// };
-// const hit2 = (batman, robin) => {
-//     batman.health = robin.hit(batman.health);
-//     document.querySelector(".hero1Title").textContent = batman.health;
-// };
-
-// const btn1 = document.querySelector(".hero1Button");
-// const btn2 = document.querySelector(".hero2Button");
-// btn1.addEventListener("click", () => hit1(robin, batman));
-// btn2.addEventListener("click", () => hit2(batman, robin));
-
-// document.querySelector(".hero1Name").textContent = batman.name;
-// document.querySelector(".hero2Name").textContent = robin.name;
-// document.querySelector(".hero1Title").textContent = batman.health;
-// document.querySelector(".hero2Title").textContent = robin.health;
-
-// // batman.health = robin.hit(batman.health);
-// // batman.health = robin.hit(batman.health);
-// // robin.health = batman.hit(robin.health);
-// // robin.health = batman.hit(robin.health);
-// // robin.health = batman.hit(robin.health);
-// // robin.health = batman.hit(robin.health);
-// // robin.modernization(5);
-// // console.log(batman);
-// // console.log(robin);
-// ==================================================================
-
-// function fn(a, b) {
-//   console.log(a + b);
-//   // return a + b;
-// }
-// const x = fn(5,3)
-
-// =======================
-// const fn = new Function("a", "b", "console.log(a+b)");
-// console.dir(fn.constructor.name);
-
-// const data = {
-//   arr: [
-//     { name: "Alex", age: 12 },
-//     { name: "Nikita", age: 12 },
-//   ],
-// };
-
-// const getData = () => {
-//   const res = { message: "error" };
-//   data.arr = res;
-// };
-
-// getData();
-
-// const getMarkup = (arr) => {
-//   if (arr.constructor.name === "Array") {
-//     let result = "";
-//     for (const el of arr) {
-//       const item = `<li><h3>${el.name}</h3></li>`;
-//       result += item;
-//     }
-//     return result;
-//   } else return "";
-// };
-
-// document.querySelector(".innerText").innerHTML = getMarkup(data.arr);
-// ========================
-// const animal = { eats: true };
-// const dog = { barks: true, eats: false  };
-
-// dog.__proto__ = animal;
-
-// console.log(dog.barks); // true
-// console.log(dog.eats); // false, свойство взято из dog
-// console.dir(dog.hasOwnProperty("eats"));
-
-// ==========================
-// const animal = {
-//   eats: true,
-//   getData() {
-//     console.log("Hello");
-//   },
-// };
-// const dog = Object.create(animal);
-// console.log(dog);
-// dog.barks = true;
-
-// const keys = Object.keys(dog);
-// console.log(keys);
-// console.log(dog.eats);
-
-// const resultArr = [];
-// for (const key in dog) {
-//   dog.hasOwnProperty(key) && resultArr.push(key);
-//   console.log(key); // barks, eats
-// }
-// console.log(resultArr);
-
-// =============================
-// const Guest = function (name, room) {
-//   this.name = name;
-//   this.room = room;
-// };
-
-// Guest.prototype.showGuestInfo = function () {
-//   console.log(`name: ${this.name}, room: ${this.room}`);
-// };
-
-// const mango = new Guest("Mango", 28);
-// const poly = new Guest("Poly", 36);
-
-// mango.showGuestInfo(); // name: Mango, room: 28
-// poly.showGuestInfo(); // name: Poly, room: 36
-
-// console.dir(mango.constructor.name);
-
-// ==================================
-
-// const arr = [{ name: "Alex" }, { name: "Nikita" }];
-// const newArr = [...arr];
-// newArr.push({ name: "Bob" });
-// arr.splice(0,1)
-// console.log(newArr);
-// console.log(arr);
-// ===============================
-// const Hero = function (name, xp) {
-//   this.name = name;
-//   this.xp = xp;
-// };
-
-// Hero.prototype.gainXp = function (amount) {
-//   console.log(`${this.name} gained ${amount} experience points`);
-//   this.xp += amount;
-// };
-
-// const Warrior = function (name, xp, weapon) {
-//   Hero.call(this, name, xp);
-
-//   this.weapon = weapon;
-// };
-
-// Warrior.prototype = Object.create(Hero.prototype);
-// Warrior.prototype.constructor = Warrior;
-
-// Warrior.prototype.attack = function () {
-//   console.log(`${this.name} attacks with ${this.weapon}`);
-// };
-
-// const poly = new Warrior("Poly", 200, "sword");
-// ========================
-// class Guest {
-//   constructor(name, roomNumber) {
-//     this.name = name;
-//     this.roomNumber = roomNumber;
-//   }
-// }
-
-// const mango = new Guest("Mango", 26);
-
-// console.log(mango); // {name: Mango, roomNumber: 26}
-// console.log(mango instanceof Guest); // true
-// console.log(mango instanceof Object); // true
-
-// const newStr = new String("dfghj");
-// console.dir(newStr);
-
-// ==============
-// class Guest {
-//   // Аналог функции-конструктора
-//   constructor(name, roomNumber) {
-//     this.name = name;
-//     this.roomNumber = roomNumber;
-//   }
-
-//   // Аналог Guest.prototype.getFullInfo
-//   getFullInfo() {
-//     console.log(`
-//       Guest ${this.name}
-//       Room number ${this.roomNumber}
-//     `);
-//   }
-// }
-
-// const mango = new Guest();
-
-// console.dir(mango);
-// mango.getFullInfo();
-// // Guest Mango
-// // Room number 26
-
-// ======
-// class Guest {
-//   constructor(name, roomNumber) {
-//     this.name = name;
-//     this.roomNumber = roomNumber;
-//   }
-
-//   get name_() {
-//     return this.name;
-//   }
-
-//   set name_(value) {
-//     if (value.includes("$")||value.includes("&&")) return
-//     this.name = value;
-//   }
-// }
-
-// const mango = new Guest("Mango", 26);
-// mango.name_ = "Alex&&"
-// console.log(mango.name);
-
-// ======================
-// class Calc {
-//   // Класс-калькулятор для двух аргументов
-//   constructor() {}
-
-//   // Метод как замена свойству
-//   static get PI() {
-//     return 3.14;
-//   }
-
-//   // Статический метод +
-//   static add(...args) {
-//     return args.reduce((acc, next) => acc + next, 0);
-//   }
-
-//   // Статический метод *
-//   static mult(...args) {
-//     return args.reduce((acc, next) => acc * next, 1);
-//   }
-// }
-
-// const arr = [1, 2, 3, 4, 5];
-
-// console.log(Calc.PI); // 3.14
-// console.log(Calc.add(...[1, 2, 3, 4, 5])); // 9
-// console.log(Calc.mult(12, 3, 4)); // 144
-
-// const calc = new Calc();
-// console.dir(Calc);
-
-// ================
-// calc.add(1, 2, 3, 4, 5);
-
-// обращение к get и set не требует вызова - т.е. без ()
-// console.log(mango.name); // Mango
-
-// console.log(mango.name); // Mango the Fluffy
-// mango.name = "Mango the Fluffy";
-
-class Animal {
-  constructor(name) {
-    this.name = name;
-  }
-
-  move() {
-    console.log(`I, ${this.name}, am moving!`);
-  }
-}
-
-class Dog extends Animal {
-  constructor(name, breed) {
-    // Вызвать конструктор Animal с аргументом name
-    super(name);
-  }
-  bark() {
-    console.log('woof!');
-  }
-  
-  moveAndMakeSound() {
-    super.move();
-    this.bark();
-  
-  }
-}
-
-
-const dog = new Dog('Mango', 'shepherd');
-console.dir(dog)
-
-// dog.move(); // I, Mango, am moving!
-// dog.bark(); // woof!
-// dog.moveAndMakeSound(); // I, Mango, am moving! woof!
