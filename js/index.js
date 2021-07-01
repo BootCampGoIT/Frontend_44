@@ -36,40 +36,40 @@
 // // ======================================================
 // Напишите функцию remove_char(str), которая возвращает строку, очищенную от всех не буквенно-цифровых символов.
 
-const str = "every., -/ hunter #! wishes ;: {} to $ % ^ & * know";
+// const str = "every., -/ hunter #! wishes ;: {} to $ % ^ & * know";
 
-// Решение:
-const badCharacters = [
-  ",",
-  ".",
-  "-",
-  "/",
-  "#",
-  "!",
-  ":",
-  ";",
-  "{",
-  "}",
-  "$",
-  "%",
-  "^",
-  "&",
-  "*",
-];
-const remove_char = (str) => {
-  const result = [];
-  str.split("").reduce((acc, item) => {
-    if (acc !== item) {
-      result[result.length-1] !== item &&
-        !badCharacters.includes(item) &&
-        result.push(item);
-    }
-    acc = item;
-    return acc;
-  }, "");
-  return result.join("");
-};
-console.log(remove_char(str));
+// // Решение:
+// const badCharacters = [
+//   ",",
+//   ".",
+//   "-",
+//   "/",
+//   "#",
+//   "!",
+//   ":",
+//   ";",
+//   "{",
+//   "}",
+//   "$",
+//   "%",
+//   "^",
+//   "&",
+//   "*",
+// ];
+// const remove_char = (str) => {
+//   const result = [];
+//   str.split("").reduce((acc, item) => {
+//     if (acc !== item) {
+//       result[result.length - 1] !== item &&
+//         !badCharacters.includes(item) &&
+//         result.push(item);
+//     }
+//     acc = item;
+//     return acc;
+//   }, "");
+//   return result.join("");
+// };
+// console.log(remove_char(str));
 
 // // ======================================================
 // Напишите функцию insensitive_search(str1, str2), которая осуществляет поиск подстроки str2 в строке str1 без учёта регистра символов.
@@ -156,3 +156,223 @@ console.log(remove_char(str));
 
 // Решение:
 // // ======================================================
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ЗАДАЧИ НА ПРИМЕНЕНИЕ МЕТОДОВ ПЕРЕБОРА МАССИВА
+// ===============================================================
+// Задать массив n случайных целых чисел из диапазона [n1;n2]
+// Решение:
+
+// ===============================================================
+// Скопировать часть элементов массива на новые позиции (затирая предыдущие элементы)
+// Решение:
+// ===============================================================
+
+// Найти максимум или минимум в массиве
+// let arr = [2,4,3,1];
+// Решение:
+// ===============================================================
+
+// Найти сумму элементов массива
+
+// Решение:
+// ===============================================================
+
+// Узнать, если ли в массиве повторяющиеся элементы
+// let arr1 = [2,4,3,1];
+// Решение:
+// ===============================================================
+
+// Узнать, есть ли в массиве некоторое значение
+// let arr = [2,4,3,1,2,1];
+// Решение:
+// ===============================================================
+
+// Выполнить некую функцию для каждого элемента массива
+// let arr = [ 1, 2, 3, 4, 5 ];
+// Решение:
+// ===============================================================
+
+// Выполнить некую функцию для каждого элемента массива и вернуть массив результатов выполнения этой функции
+// let arr = [ 1, -2, -3, 4, 5 ];
+
+// Выполнить некую функцию для каждого элемента массива и проверить, истинны ли все результаты вызова функции
+// let arr = [ 1, 2, 3, 4, 5 ];
+
+// Отфильтровать массив (оставить элементы, отвечающие нужному условию или условиям)
+// let arr = [5, 4, 3, 8, 0];
+
+// ===============================
+
+// const value = 0;
+// // undefined, 0, NaN, null, false, ""
+
+// console.log(value ?? 5);
+
+// const items = [
+//   { original_title: "Batman", title: "Batman forever" },
+//   { original_title: "", title: "Batman forever" },
+// ];
+
+// console.log("original_title:", items[1].original_title ?? items[1].title);
+// ====================================
+
+// const array = [
+//   {
+//     number: 1,
+//     numbers: [
+//       { number: 11, numbers: [{ number: 111, numbers: [] }] },
+//       { number: 12, numbers: [{ number: 121, numbers: [] }] },
+//     ],
+//   },
+//   {
+//     number: 2,
+//     numbers: [],
+//   },
+//   {
+//     number: 3,
+//     numbers: [
+//       { number: 31, numbers: [{ number: 311, numbers: [] }] },
+//       {
+//         number: 32,
+//         numbers: [{ number: 321, numbers: [{ number: 321, numbers: [] }] }],
+//       },
+//     ],
+//   },
+// ];
+
+// const createMarkup = (arr) => {
+//   const res = arr.reduce((acc, item) => {
+//     acc += `<li>${item.number}${
+//       item.numbers.length ? createMarkup(item.numbers) : ""
+//     }</li>`;
+//     return acc;
+//   }, "");
+//   return `<ul type="circle">${res}</ul>`;
+// };
+
+// const div = document.querySelector("#tree");
+// div.innerHTML = createMarkup(array);
+
+/* <ul>
+  <li>
+    <h3>1</h3>
+    <ul>
+      <li>
+        <h4>11</h4>
+        <ul>
+            <li>111</li>
+        </ul>
+      </li>
+      <li>
+        <h4>12</h4>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <h3>2</h3>
+  </li>
+  <li>
+    <h3>3</h3>
+  </li>
+</ul>; */
+
+// ======================================
+// const arr = [1, 2, 3, "o", 5, 6];
+
+// const res = arr.reduce((acc, item, idx) => {
+//   console.group();
+//   console.log("item :>> ", item);
+//   console.log("idx :>> ", idx);
+//   console.groupEnd();
+// //   debugger;
+//   acc += item;
+//   return acc;
+// }, 0);
+
+// console.log(res);
+
+// =========================================
+
+const server = {
+  orders: [],
+};
+
+const shop = {
+  products: {
+    categories: {
+      tools: [],
+      toys: [],
+      electronics: [],
+    },
+  },
+  cart: {
+    items: [],
+    totalPrice: 0,
+  },
+};
+
+const user1 = {
+  name: "Alex",
+};
+const user2 = {
+  name: "Nikita",
+};
+
+const admin = {
+  name: "admin",
+};
+
+const addProduct = (category, product) => {
+  shop.products.categories[category].push(product);
+};
+
+const removeProduct = (category, id) => {
+  shop.products.categories[category] = [
+    ...shop.products.categories[category].filter(
+      (product) => product.id !== id
+    ),
+  ];
+};
+
+const addToCart = (product) => {
+  shop.cart.totalPrice += product.price;
+  if (shop.cart.items.some((item) => item.id === product.id)) {
+    shop.cart.items = shop.cart.items.map((item) =>
+      item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    return;
+  }
+  shop.cart.items.push({ ...product, quantity: 1 });
+};
+
+const removeFromCart = (product) => {
+  shop.cart.totalPrice -= product.price;
+  const targetProduct = shop.cart.items.find((item) => item.id === product.id);
+  if (targetProduct && targetProduct.quantity > 1) {
+    shop.cart.items = shop.cart.items.map((item) =>
+      item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
+    );
+    return;
+  }
+  shop.cart.items = shop.cart.items.filter((item) => item.id !== product.id);
+};
+
+const product = {
+  id: "dsdadsaas",
+  name: "Milk",
+  price: 30,
+};
+
+addToCart(product);
+console.log("shop.cart :>> ", shop.cart);
+debugger;
+addToCart(product);
+console.log("shop.cart :>> ", shop.cart);
+debugger;
+removeFromCart(product);
+console.log("shop.cart :>> ", shop.cart);
+debugger;
+removeFromCart(product);
+console.log("shop.cart :>> ", shop.cart);
+// console.log([1, 2, 3, 4, 5].filter((item) => item !== 4));
